@@ -1,0 +1,24 @@
+# Ignore compiled Java & Kotlin files
+*.class
+*.jar
+*.war
+*.ear
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore IDE & OS-specific files
+.idea/
+.vscode/
+*.log
+*.tmp
+
+# Ignore executable files
+*.exe
+*.out
+*.o
+*.apk
+*.ipynb_checkpoints/
