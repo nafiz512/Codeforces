@@ -8,43 +8,32 @@ using namespace std;
 #define pb push_back
 #define all(v) (v).begin(),(v).end()
 const int mod =1e9+7;
-const int N=1e8+2;
+const int N=5*1e5+2;
 #define Pi 2 * acos(0.0);
 const string yes="YES",no="NO";
 
+vector<int>ans(N,0);
+void Calculate()
+{
+    int dis=1;
+    int x=1;
+    ans[1]=0;
+    for(int i=3;i<N;i+=2)
+    {
+        ans[i]=ans[i-2]+x*8*dis;
+        x++;
+        dis++;
+    }
+}
 void solve()
 {
     int n;
     cin>>n;
-    vector<int>v(n),ans(n,0);
-    for(int &i:v){
-        cin>>i;
-    }
-    for(int i=0;i<n;i++)
-    {
-        if(v[i])
-        {
-            ans[i]++;
-            int bk=v[i]-1;
-            int l=i-bk-1;
-            if(l>=0)
-            {
-                ans[l]--;
-            }
-        }
-    }
-    for(int i=n-2;i>=0;i--)
-    {
-        ans[i]=ans[i]+ans[i+1];
-    }
-    for(int i=0;i<n;i++)
-    {
-        if(ans[i])ans[i]=1;
-        cout<<ans[i]<<" ";
-    }cout<<endl;
+    cout<<ans[n]<<endl;
 }
 signed main()
 {
+    Calculate();
     fast;
     //solve(); return 0;
     int t;

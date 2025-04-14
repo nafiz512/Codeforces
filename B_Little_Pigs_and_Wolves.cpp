@@ -18,44 +18,44 @@ void solve()
 {
     int n;
     cin>>n;
-    string s;
-    cin>>s;
-    if(s.size()==1)
+    int m;
+    cin>>m;
+    vector<string>s(n);
+    for(int i=0;i<n;i++)
     {
-        cout<<s<<s<<endl;
+        cin>>s[i];
     }
-    else 
+    int cont=0;
+    for(int i=0;i<n;i++)
     {
-        
-        if(s[0]==s[1])
+        for(int j=0;j<m;j++)
         {
-            cout<<s[0]<<s[0]<<endl;
-        }
-        else 
-        {
-            string ans;
-            ans.pb(s[0]);
-            for(int i=1;i<n;i++)
+            if(s[i][j]!='W')
+                continue;
+            int x[4]={0,0,-1,1};
+            int y[4]={1,-1,0,0};
+            for(int k=0;k<4;k++)
             {
-                if(s[i]<=ans.back())
+                int ni=i+x[k];
+                int nj=j+y[k];
+                if(ni<0 || ni>=n || nj<0 || nj>=m)
+                    continue;
+                if(s[ni][nj]=='P')
                 {
-                    ans.pb(s[i]);
-                }
-                else
-                {
+                    cont++;
+                    s[ni][nj]='.';
                     break;
                 }
             }
-            cout<<ans;
-            reverse(all(ans));
-            cout<<ans<<endl;
+            //ans=max(ans,cont);
         }
     }
+    cout<<cont<<endl;
 }
 signed main()
 {
     //fast;
-    //solve(); return 0;
+    solve(); return 0;
     int t;
     cin>>t;
     for(int i=1;i<=t;i++)

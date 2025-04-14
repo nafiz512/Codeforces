@@ -14,41 +14,51 @@ const string yes="YES",no="NO";
 //cout << fixed << setprecision(20) << p << endl;
 
 // modinverse
+int gcd(int a, int b) {
+    if(b==0)
+        return a;
+    else
+        return gcd(b, a % b);
+}
+int modExp(int x,int n)
+{
+    if(x==1)
+        return 1;
+    if(n==0)
+        return 1;
+    if(n%2 == 0)
+        return modExp((x*x)%mod,n/2);
+    else
+        return (x*modExp((x*x)%mod,(n-1)/2))%mod;
+}
+
 void solve()
 {
-    int n;
-    cin>>n;
     string s;
     cin>>s;
     if(s.size()==1)
     {
-        cout<<s<<s<<endl;
+        cout<<0<<endl;
     }
-    else 
-    {
-        
-        if(s[0]==s[1])
+    else{
+        int c0=count(all(s),'0');
+        if(c0)
         {
-            cout<<s[0]<<s[0]<<endl;
-        }
-        else 
-        {
-            string ans;
-            ans.pb(s[0]);
-            for(int i=1;i<n;i++)
+            int a=s.size()-c0-1;
+            int cont=0;
+            for(int i=s.size()-1;i>=0;i--)
             {
-                if(s[i]<=ans.back())
-                {
-                    ans.pb(s[i]);
-                }
-                else
+                if(s[i]!='0')
                 {
                     break;
                 }
+                cont++;
             }
-            cout<<ans;
-            reverse(all(ans));
+            int ans=a+cont;
             cout<<ans<<endl;
+        }
+        else{
+            cout<<s.size()-1<<endl;
         }
     }
 }

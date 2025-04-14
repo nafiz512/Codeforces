@@ -18,37 +18,36 @@ void solve()
 {
     int n;
     cin>>n;
-    string s;
-    cin>>s;
-    if(s.size()==1)
+    vector<int>v(n);
+    for(int &i:v)
+        cin>>i;
+    int c0=count(all(v),0ll);
+    int c1=count(all(v),1ll);
+    if(c1 <=n/2)
     {
-        cout<<s<<s<<endl;
+        cout<<n/2<<endl;
+        for(int i=0;i<n/2;i++)
+        {
+            cout<<0<<' ';
+        }cout<<endl;
     }
     else 
     {
-        
-        if(s[0]==s[1])
+        if(c1&1)
         {
-            cout<<s[0]<<s[0]<<endl;
-        }
-        else 
-        {
-            string ans;
-            ans.pb(s[0]);
-            for(int i=1;i<n;i++)
+            cout<<c1-1<<endl;
+            for(int i=0;i<c1-1;i++)
             {
-                if(s[i]<=ans.back())
-                {
-                    ans.pb(s[i]);
-                }
-                else
-                {
-                    break;
-                }
-            }
-            cout<<ans;
-            reverse(all(ans));
-            cout<<ans<<endl;
+                cout<<1<<' ';
+            }cout<<endl;
+        }
+        else
+        {
+            cout<<c1<<endl;
+            for(int i=0;i<c1;i++)
+            {
+                cout<<1<<' ';
+            }cout<<endl;
         }
     }
 }

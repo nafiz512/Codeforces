@@ -11,37 +11,39 @@ const int mod =1e9+7;
 const int N=1e8+2;
 #define Pi 2 * acos(0.0);
 const string yes="YES",no="NO";
-
+bool isPrime(int n){
+    if(n==1)return false;
+    for(int i=2;i*i<=n;i++)
+    {
+        if(n%i==0)return false;
+    }
+    return true;
+}
 void solve()
 {
     int n;
     cin>>n;
-    vector<int>v(n),ans(n,0);
-    for(int &i:v){
-        cin>>i;
-    }
-    for(int i=0;i<n;i++)
+    int a=-1;
+    int i=1+n;
+    while(a==-1)
     {
-        if(v[i])
+        if(isPrime(i))
         {
-            ans[i]++;
-            int bk=v[i]-1;
-            int l=i-bk-1;
-            if(l>=0)
-            {
-                ans[l]--;
-            }
+            a=i;break;
         }
+        i++;
     }
-    for(int i=n-2;i>=0;i--)
+    int b=-1;
+    i+=n;
+    while(b==-1)
     {
-        ans[i]=ans[i]+ans[i+1];
+        if(isPrime(i))
+        {
+            b=i;break;
+        }
+        i++;
     }
-    for(int i=0;i<n;i++)
-    {
-        if(ans[i])ans[i]=1;
-        cout<<ans[i]<<" ";
-    }cout<<endl;
+    cout<<a*b<<endl;
 }
 signed main()
 {

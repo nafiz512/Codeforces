@@ -12,49 +12,54 @@ const int mod =1e9+7;
 const int N=2*1e6+2;
 const string yes="YES",no="NO";
 //cout << fixed << setprecision(20) << p << endl;
-
 // modinverse
+
 void solve()
 {
     int n;
     cin>>n;
-    string s;
-    cin>>s;
-    if(s.size()==1)
+    int k;
+    cin>>k;
+    vector<int>ans(n,1);//,v(n);
+    map<int,vector<int>>miv;
+    for(int i=0;i<n;i++)
     {
-        cout<<s<<s<<endl;
+        int x;
+        cin>>x;
+        miv[x].pb(i);
+        //v[i]=x;
     }
-    else 
+    set<int>st;
+    for(auto &it:miv)
     {
-        
-        if(s[0]==s[1])
+        int x=it.ff;
+        if(st.find(k-x)!=st.end())
         {
-            cout<<s[0]<<s[0]<<endl;
-        }
-        else 
-        {
-            string ans;
-            ans.pb(s[0]);
-            for(int i=1;i<n;i++)
+            for(int &i:it.sc)
             {
-                if(s[i]<=ans.back())
-                {
-                    ans.pb(s[i]);
-                }
-                else
-                {
-                    break;
-                }
+                ans[i]=0;
             }
-            cout<<ans;
-            reverse(all(ans));
-            cout<<ans<<endl;
+        }
+        else{
+            st.insert(x);
+        }
+        if(x+x==k && it.sc.size()>1)
+        {
+            vector<int>v=it.sc;
+            for(int i=0;i<v.size()/2;i++)
+            {
+                ans[v[i]]=ans[v[i]]^1^0;
+            }
         }
     }
+    for(int &i:ans)
+    {
+        cout<<i<<' ';
+    }cout<<endl;
 }
 signed main()
 {
-    //fast;
+    fast;
     //solve(); return 0;
     int t;
     cin>>t;

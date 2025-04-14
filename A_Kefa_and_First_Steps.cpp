@@ -8,7 +8,7 @@ using namespace std;
 #define pb push_back
 #define all(v) (v).begin(),(v).end()
 const int mod =1e9+7;
-const int N=1e8+2;
+const int N=1e6+2;
 #define Pi 2 * acos(0.0);
 const string yes="YES",no="NO";
 
@@ -16,37 +16,32 @@ void solve()
 {
     int n;
     cin>>n;
-    vector<int>v(n),ans(n,0);
-    for(int &i:v){
+    vector<int>a(n);
+    for(int &i:a){
         cin>>i;
     }
+    int ans=1;
     for(int i=0;i<n;i++)
     {
-        if(v[i])
+        int cont=1;
+        int j=i+1;
+        for(j=i+1;j<n;j++)
         {
-            ans[i]++;
-            int bk=v[i]-1;
-            int l=i-bk-1;
-            if(l>=0)
+            if(a[j-1]>a[j])
             {
-                ans[l]--;
+                break;
             }
+            cont++;
         }
+        i=j-1;
+        ans=max(ans,cont);
     }
-    for(int i=n-2;i>=0;i--)
-    {
-        ans[i]=ans[i]+ans[i+1];
-    }
-    for(int i=0;i<n;i++)
-    {
-        if(ans[i])ans[i]=1;
-        cout<<ans[i]<<" ";
-    }cout<<endl;
+    cout<<ans<<endl;
 }
 signed main()
 {
     fast;
-    //solve(); return 0;
+    solve(); return 0;
     int t;
     cin>>t;
     for(int i=1;i<=t;i++)

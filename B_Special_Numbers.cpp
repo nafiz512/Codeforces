@@ -14,43 +14,39 @@ const string yes="YES",no="NO";
 //cout << fixed << setprecision(20) << p << endl;
 
 // modinverse
+int modExp(int x,int n)
+{
+    if(x==1)
+        return 1;
+    if(n==0)
+        return 1;
+    if(n%2 == 0)
+        return modExp((x*x)%mod,n/2);
+    else
+        return (x*modExp((x*x)%mod,(n-1)/2))%mod;
+}
 void solve()
 {
     int n;
     cin>>n;
+    int k;
+    cin>>k;
     string s;
-    cin>>s;
-    if(s.size()==1)
+    while(k>0)
     {
-        cout<<s<<s<<endl;
+        char ch=k%2+'0';
+        s.pb(ch);
+        k/=2;
     }
-    else 
+    int ans=0;
+    for(int i=0;i<s.size();i++)
     {
-        
-        if(s[0]==s[1])
+        if(s[i]=='1')
         {
-            cout<<s[0]<<s[0]<<endl;
-        }
-        else 
-        {
-            string ans;
-            ans.pb(s[0]);
-            for(int i=1;i<n;i++)
-            {
-                if(s[i]<=ans.back())
-                {
-                    ans.pb(s[i]);
-                }
-                else
-                {
-                    break;
-                }
-            }
-            cout<<ans;
-            reverse(all(ans));
-            cout<<ans<<endl;
+            ans=(ans+modExp(n,i))%mod;
         }
     }
+    cout<<ans%mod<<endl;
 }
 signed main()
 {
