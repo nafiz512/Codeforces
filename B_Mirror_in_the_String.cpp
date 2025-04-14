@@ -54,7 +54,7 @@ void solve()
 }
 signed main()
 {
-    //fast;
+    fast;
     //solve(); return 0;
     int t;
     cin>>t;
