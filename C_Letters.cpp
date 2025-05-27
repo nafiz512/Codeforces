@@ -12,25 +12,6 @@ const int mod =1e9+7;
 const int N=2*1e6+2;
 const string yes="YES",no="NO";
 //cout << fixed << setprecision(20) << p << endl;
-
-// modinverse
-// int gcd(int a, int b) {
-//     if(b==0)
-//         return a;
-//     else
-//         return gcd(b, a % b);
-// }
-// int modExp(int x,int n)
-// {
-//     if(x==1)
-//         return 1;
-//     if(n==0)
-//         return 1;
-//     if(n%2 == 0)
-//         return modExp((x*x)%mod,n/2);
-//     else
-//         return (x*modExp((x*x)%mod,(n-1)/2))%mod;
-// }
 int lowerBound(const vector<int>& arr, int target) {
     int low = 0, high = arr.size();
     
