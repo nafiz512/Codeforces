@@ -18,35 +18,59 @@ const int mod =1e9+7;
 const int N=2*1e6+2;
 const string yes="YES",no="NO";
 //cout << fixed << setprecision(20) << p << endl;
-
+void print(vector<int>&v)
+{
+    for(int i=0;i<v.size();i++)
+    {
+        cout<<v[i]<<' ';
+    }cout<<endl;
+}
+bool isSorted(vector<int>&v)
+{
+    for(int i=1;i<v.size();i++)
+    {
+        if(v[i-1]>v[i])
+            return false;
+    }
+    return true;
+}
 void solve()
 {
-    int  n;
+    int n;
     cin>>n;
     vector<int>v(n);
-    for(int &i:v)
-    {
-        cin>>i;
-    }
-    map<int,int>mp;
-    int sum=accumulate(all(v),0ll);
-    int x=(sum*2)/n;
-    if((x/2.0)*n!=sum)
-    {
-        cout<<0<<endl;
-        return;
-    }
-    int ans=0;
     for(int i=0;i<n;i++)
     {
-        auto it=mp.find(x-v[i]);
-        if(it!=mp.end())
-        {
-            ans+=it->sc;
-        }
-        mp[v[i]]++;
+        cin>>v[i];
     }
-    cout<<ans<<endl;
+    if(v[n-2]>v[n-1])
+    {
+        cout<<-1<<endl;
+    }
+    else
+    {
+        if(isSorted(v))
+        {
+            cout<<0<<endl;
+            return;
+        }
+        for(int i=0;i<n-2;i++)
+        {
+            v[i]=v[n-2]-v[n-1];
+        }
+        if(isSorted(v))
+        {
+            cout<<n-2<<endl;
+            for(int i=0;i<n-2;i++)
+            {
+                cout<<i+1<<' '<<n-1<<' '<<n<<endl;
+            }
+        }
+        else
+        {
+            cout<<-1<<endl;
+        }
+    }
 }
 signed main()
 {
