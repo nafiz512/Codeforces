@@ -26,7 +26,10 @@ void solve()
         {
             sump+=i;
         }
-        else sumn+=i;
+        else 
+        {
+            sumn+=i;
+        }
     }
     if(sump+sumn==0)cout<<no<<endl;
     else
